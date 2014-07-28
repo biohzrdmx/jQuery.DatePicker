@@ -270,7 +270,7 @@
 			datePicker.on('click', '.calendar .prev', function(e) {
 				e.preventDefault();
 				var el = $(this),
-					calendar = el.closest('.calendar')
+					calendar = el.closest('.calendar'),
 					current = calendar.find('.month'),
 					month = current.data('month'),
 					year = current.data('year');
@@ -298,7 +298,7 @@
 			datePicker.on('click', '.calendar .next', function(e) {
 				e.preventDefault();
 				var el = $(this),
-					calendar = el.closest('.calendar')
+					calendar = el.closest('.calendar'),
 					current = calendar.find('.month'),
 					month = current.data('month'),
 					year = current.data('year');
@@ -327,7 +327,7 @@
 			datePicker.on('click', '.months .month', function(e) {
 				e.preventDefault();
 				var el = $(this),
-					months = el.closest('.months')
+					months = el.closest('.months'),
 					month = el.data('month'),
 					year = el.data('year'),
 					calendar = datePicker.children('.calendar'),
@@ -341,7 +341,7 @@
 				selected.month = month;
 				// Replace
 				replacement = $.datePicker.utils.buildCalendar(year, month, date);
-				replacement.hide()
+				replacement.hide();
 				calendar.replaceWith(replacement);
 				// Animate
 				months.fadeOut(150, function() {
@@ -351,7 +351,7 @@
 			datePicker.on('click', '.months .prev', function(e) {
 				e.preventDefault();
 				var el = $(this),
-					months = el.closest('.months')
+					months = el.closest('.months'),
 					current = months.find('.year'),
 					year = current.data('year');
 				if ( el.hasClass('disabled') ) {
@@ -373,7 +373,7 @@
 			datePicker.on('click', '.months .next', function(e) {
 				e.preventDefault();
 				var el = $(this),
-					months = el.closest('.months')
+					months = el.closest('.months'),
 					current = months.find('.year'),
 					year = current.data('year');
 				if ( el.hasClass('disabled') ) {
@@ -436,7 +436,7 @@
 			datePicker.on('click', '.years .prev', function(e) {
 				e.preventDefault();
 				var el = $(this),
-					years = el.closest('.years')
+					years = el.closest('.years'),
 					current = years.find('.decade'),
 					decade = current.data('decade');
 				if ( el.hasClass('disabled') ) {
@@ -458,7 +458,7 @@
 			datePicker.on('click', '.years .next', function(e) {
 				e.preventDefault();
 				var el = $(this),
-					years = el.closest('.years')
+					years = el.closest('.years'),
 					current = years.find('.decade'),
 					decade = current.data('decade');
 				if ( el.hasClass('disabled') ) {
@@ -514,7 +514,7 @@
 			datePicker.on('click', '.decades .prev', function(e) {
 				e.preventDefault();
 				var el = $(this),
-					decades = el.closest('.decades')
+					decades = el.closest('.decades'),
 					current = decades.find('.century'),
 					century = current.data('century');
 				if ( el.hasClass('disabled') ) {
@@ -534,7 +534,7 @@
 			datePicker.on('click', '.decades .next', function(e) {
 				e.preventDefault();
 				var el = $(this),
-					decades = el.closest('.decades')
+					decades = el.closest('.decades'),
 					current = decades.find('.century'),
 					century = current.data('century');
 				if ( el.hasClass('disabled') ) {
