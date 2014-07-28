@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery.DatePicker</title>
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/jquery.datepicker.css">
+	<style>
+		body {
+			font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+			font-size: 14px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>jQuery DatePicker</h1>
+		<p>An awesome, lightweight and customizable calendar!</p>
+		<h2>Installing</h2>
+		<p>Download the required CSS and JS files, add them to your HTML file and you're done.</p>
+		<pre>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/jquery.datepicker.css&quot;&gt;</pre>
+		<pre>&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.datepicker.js&quot;&gt;&lt;/script&gt;</pre>
+		<h2>Basic usage</h2>
+		<h3>Automatic mode</h3>
+		<p>Create an input, and add the <code>data-select="datepicker"</code> data attribute.</p>
+		<p>If you want to have a toggle button next to the input, wrap both elements into a common container and add the <code>data-toggle="datepicker"</code> data attribute to the button.</p>
+		<strong>HTML</strong>
+		<pre>&lt;div class=&quot;input-group&quot;&gt;
+	&lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;date&quot; id=&quot;date&quot; data-select=&quot;datepicker&quot;&gt;
+	&lt;span class=&quot;input-group-btn&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;datepicker&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/span&gt;
+&lt;/div&gt;</pre>
+		<strong>Result</strong>
+		<div class="well">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="input-group">
+						<input type="text" class="form-control" name="date" id="date" data-select="datepicker">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary" data-toggle="datepicker"><i class="fa fa-calendar"></i></button></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--  -->
+		<h3>Requirements</h3>
+		<ul>
+			<li><a href="http://jquery.com/">jQuery</a> 1.8+</li>
+			<li>A recent/decent web browser (Firefox, Chrome or Opera suggested; IE8+ works too)</li>
+			<li>A valid HTML 5 DOCTYPE (strongly recommended)</li>
+		</ul>
+		<!--  -->
+		<h2>Licensing</h2>
+		<p>This software is released under the MIT license.</p>
+		<p>Copyright &copy; 2014 biohzrdmx</p>
+		<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+		<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+		<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+		<!--  -->
+		<h3>Contributing</h3>
+		<p>Fork the repo, add an interesting feature or fix a bug and send a pull request.</p>
+		<h3>Troubleshooting</h3>
+		<p>The calendar works on almost every browser BUT it will visually break on IE7 and older (due to buggy CSS support). This is not a concern and will not be fixed.</p>
+		<!--  -->
+		<h2>Credits</h2>
+		<p><strong>Lead coder:</strong> biohzrdmx (<a href="https://github.com/biohzrdmx/">github.com/biohzrdmx</a>)</p>
+		<br><br>
+		<!--  -->
+	</div>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.datepicker.js"></script>
+</body>
+</html>
