@@ -43,7 +43,26 @@
 			</div>
 		</div>
 		<!--  -->
-		<h3>Requirements</h3>
+		<h2>Advanced usage</h2>
+		<h3>Custom date formats</h3>
+		<p>You can specify your own date formats if you want; to do so, you will have to override two functions, the one that formats the selected date and the one that parses the input value into a <code>Date</code> object.</p>
+		<p>The default implementation uses the <code>dd/mm/yyyy</code> format, with the following functions:</p>
+		<pre>formatDate: function(date) {
+    var formatted = $.datePicker.utils.pad(date.getDate(), 2) + '/' + $.datePicker.utils.pad(date.getMonth() + 1, 2) + '/' + date.getFullYear();
+    return formatted;
+},
+parseDate: function(string) {
+    var date = new Date();
+    var parts = string.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+    if ( parts &amp;&amp; parts.length == 4 ) {
+        date = new Date( parts[3], parts[2] - 1, parts[1] );
+    }
+    return date;
+}</pre>
+		<p>As you can see, it's pretty straightforward to override them, but it's strongly recommended to use a date manipulation library such as moment.js to avoid localization/crossbrowser issues.</p>
+		<p>Just make sure to return a valid formatted date in <code>formatDate</code> and a valid <code>Date</code> object in <code>parseDate</code></p>
+		<!--  -->
+		<h2>Requirements</h2>
 		<ul>
 			<li><a href="http://jquery.com/">jQuery</a> 1.8+</li>
 			<li>A recent/decent web browser (Firefox, Chrome or Opera suggested; IE8+ works too)</li>

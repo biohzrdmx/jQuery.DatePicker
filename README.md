@@ -26,7 +26,32 @@ If you want to have a toggle button next to the input, wrap both elements into a
 		<span class="input-group-btn"><button type="button" class="btn btn-primary" data-toggle="datepicker"><i class="fa fa-calendar"></i></button></span>
 	</div>
 
-###Requirements
+##Advanced usage
+
+###Custom date formats
+
+You can specify your own date formats if you want; to do so, you will have to override two functions, the one that formats the selected date and the one that parses the input value into a `Date` object.
+
+The default implementation uses the `dd/mm/yyyy` format, with the following functions:
+
+	formatDate: function(date) {
+		var formatted = $.datePicker.utils.pad(date.getDate(), 2) + '/' + $.datePicker.utils.pad(date.getMonth() + 1, 2) + '/' + date.getFullYear();
+		return formatted;
+	},
+	parseDate: function(string) {
+		var date = new Date();
+		var parts = string.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+		if ( parts && parts.length == 4 ) {
+			date = new Date( parts[3], parts[2] - 1, parts[1] );
+		}
+		return date;
+	}
+
+As you can see, it's pretty straightforward to override them, but it's strongly recommended to use a date manipulation library such as moment.js to avoid localization/crossbrowser issues.
+
+Just make sure to return a valid formatted date in `formatDate` and a valid `Date` object in `parseDate`
+
+##Requirements
 
  - jQuery 1.8+
  - A recent/decent web browser (Firefox, Chrome or Opera suggested; IE8+ works too)

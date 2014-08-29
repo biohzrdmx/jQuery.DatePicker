@@ -15,6 +15,18 @@
 			daysShort: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 		},
 		defaults: {
+			formatDate: function(date) {
+				var formatted = $.datePicker.utils.pad(date.getDate(), 2) + '/' + $.datePicker.utils.pad(date.getMonth() + 1, 2) + '/' + date.getFullYear();
+				return formatted;
+			},
+			parseDate: function(string) {
+				var date = new Date();
+				var parts = string.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+				if ( parts && parts.length == 4 ) {
+					date = new Date( parts[3], parts[2] - 1, parts[1] );
+				}
+				return date;
+			},
 			limitCenturies: true,
 			closeOnPick: true
 		},
@@ -168,7 +180,7 @@
 							numbering++;
 							continue;
 						}
-						if (num == date.getDate() && month == date.getMonth() && year == date.getFullYear() && numbering < lastCur) {
+						if (numbering == date.getDate() && month == date.getMonth() && year == date.getFullYear()) {
 							type += ' today';
 						}
 						if (numbering == selected.getDate() && month == selected.getMonth() && year == selected.getFullYear()) {
@@ -196,10 +208,7 @@
 				if ( typeof opts.element == 'string' ) {
 					opts.element = $(opts.element);
 				}
-				var parts = opts.element.val().match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
-				if ( parts && parts.length == 4 ) {
-					date = new Date( parts[3], parts[2] - 1, parts[1] );
-				}
+				date = opts.parseDate( opts.element.val() );
 			}
 			var selected = {
 					day: date.getDate(),
@@ -247,7 +256,7 @@
 				date.setDate(selected.day);
 				date.setMonth(selected.month);
 				date.setYear(selected.year);
-				var formatted = $.datePicker.utils.pad(date.getDate(), 2) + '/' + $.datePicker.utils.pad(date.getMonth() + 1, 2) + '/' + date.getFullYear();
+				var formatted = opts.formatDate(date);
 				$(opts.element).val(formatted);
 				if (opts.closeOnPick) {
 					$.datePicker.hide();
