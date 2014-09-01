@@ -245,7 +245,7 @@
 				e.preventDefault();
 				var el = $(this),
 					calendar = el.closest('.calendar');
-				if ( el.hasClass('blank') ) {
+				if ( el.hasClass('blank') || el.hasClass('grayed') ) {
 					return;
 				}
 				//
