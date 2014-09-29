@@ -245,7 +245,7 @@
 				e.preventDefault();
 				var el = $(this),
 					calendar = el.closest('.calendar');
-				if ( el.hasClass('blank') || el.hasClass('grayed') ) {
+				if ( el.hasClass('blank') ) {
 					return;
 				}
 				//
@@ -253,12 +253,21 @@
 				el.addClass('selected');
 				//
 				selected.day = parseInt( el.text() ) || 1;
+				if ( el.hasClass('grayed') ) {
+					if ( el.hasClass('prev') ) {
+						selected.year -= selected.month == 0 ? 1 : 0;
+						selected.month = selected.month > 0 ? selected.month - 1 : 11;
+					} else if ( el.hasClass('next') ) {
+						selected.year += selected.month == 11 ? 1 : 0;
+						selected.month = selected.month < 11 ? selected.month + 1 : 0;
+					}
+				}
 				date.setDate(selected.day);
 				date.setMonth(selected.month);
 				date.setYear(selected.year);
 				var formatted = opts.formatDate(date);
 				$(opts.element).val(formatted);
-				if (opts.closeOnPick) {
+				if ( opts.closeOnPick && !el.hasClass('grayed') ) {
 					$.datePicker.hide();
 				}
 			});
