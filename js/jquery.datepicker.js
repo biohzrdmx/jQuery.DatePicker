@@ -12,7 +12,8 @@
 			monthsFull: ['January', 'Febraury', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 			monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 			daysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-			daysShort: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+			daysShort: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+			messageLocked: 'The day you have just selected is not available'
 		},
 		defaults: {
 			formatDate: function(date) {
@@ -26,6 +27,9 @@
 					date = new Date( parts[3], parts[2] - 1, parts[1] );
 				}
 				return date;
+			},
+			selectDate: function(date) {
+				return true;
 			},
 			limitCenturies: true,
 			closeOnPick: true
@@ -262,13 +266,19 @@
 						selected.month = selected.month < 11 ? selected.month + 1 : 0;
 					}
 				}
-				date.setDate(selected.day);
-				date.setMonth(selected.month);
-				date.setYear(selected.year);
-				var formatted = opts.formatDate(date);
-				$(opts.element).val(formatted);
-				if ( opts.closeOnPick && !el.hasClass('grayed') ) {
-					$.datePicker.hide();
+				var test = new Date();
+				test.setDate(selected.day);
+				test.setMonth(selected.month);
+				test.setYear(selected.year);
+				if ( opts.selectDate( test ) ) {
+					date.setDate(selected.day);
+					date.setMonth(selected.month);
+					date.setYear(selected.year);
+					var formatted = opts.formatDate(date);
+					$(opts.element).val(formatted);
+					if ( opts.closeOnPick && !el.hasClass('grayed') ) {
+						$.datePicker.hide();
+					}
 				}
 			});
 			datePicker.on('click', '.calendar .month', function(e) {
@@ -600,12 +610,33 @@
 		this.each(function() {
 			var el = $(this),
 				parent = el.parent(),
-				button = parent.find('[data-toggle=datepicker]');
+				button = parent.find('[data-toggle=datepicker]'),
+				locked = el.data('locked');
+			locked = locked ? locked.split(';') : false;
+			var callback = function(date) {
+				var ret = true,
+					selected = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+				if (locked.length) {
+					for (var i = 0; i < locked.length; i++) {
+						if (locked[i] == selected) {
+							if ( typeof $.alert === 'function' ) {
+								$.alert = $.datePicker.strings.messageLocked;
+							} else {
+								alert($.datePicker.strings.messageLocked);
+							}
+						 	ret = false;
+						 	break;
+						}
+					};
+				}
+				return ret;
+			};
 			if (! button.length ) {
 				// Bind to the element itself
 				el.on('click', function() {
 					$.datePicker.show({
-						element: el
+						element: el,
+						selectDate: callback
 					});
 				});
 			} else {
@@ -616,7 +647,8 @@
 						$.datePicker.hide();
 					} else {
 						$.datePicker.show({
-							element: el
+							element: el,
+							selectDate: callback
 						});
 					}
 				});
