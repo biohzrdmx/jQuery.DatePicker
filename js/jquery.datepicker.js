@@ -267,13 +267,10 @@
 					}
 				}
 				var test = new Date();
-				test.setDate(selected.day);
-				test.setMonth(selected.month);
-				test.setYear(selected.year);
+				test.setFullYear(selected.year, selected.month, selected.day);
+				//
 				if ( opts.selectDate( test ) ) {
-					date.setDate(selected.day);
-					date.setMonth(selected.month);
-					date.setYear(selected.year);
+					date.setFullYear(selected.year, selected.month, selected.day);
 					var formatted = opts.formatDate(date);
 					$(opts.element).val(formatted);
 					if ( opts.closeOnPick && !el.hasClass('grayed') ) {
