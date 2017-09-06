@@ -3,7 +3,7 @@ jQuery DatePicker
 
 An awesome, lightweight and customizable calendar!
 
-##Installing
+## Installing
 
 Download the required CSS and JS files, add them to your HTML file and you're done.
 
