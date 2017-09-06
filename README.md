@@ -11,9 +11,9 @@ Download the required CSS and JS files, add them to your HTML file and you're do
 	<script type="text/javascript" src="js/jquery.datepicker.js"></script>
 
 
-##Basic usage
+## Basic usage
 
-###Automatic mode
+### Automatic mode
 
 Create an input, and add the `data-select="datepicker"` data attribute.
 
@@ -26,9 +26,9 @@ If you want to have a toggle button next to the input, wrap both elements into a
 		<span class="input-group-btn"><button type="button" class="btn btn-primary" data-toggle="datepicker"><i class="fa fa-calendar"></i></button></span>
 	</div>
 
-##Advanced usage
+## Advanced usage
 
-###Custom date formats
+### Custom date formats
 
 You can specify your own date formats if you want; to do so, you will have to override two functions, the one that formats the selected date and the one that parses the input value into a `Date` object.
 
@@ -51,17 +51,17 @@ As you can see, it's pretty straightforward to override them, but it's strongly 
 
 Just make sure to return a valid formatted date in `formatDate` and a valid `Date` object in `parseDate`
 
-##Requirements
+## Requirements
 
  - jQuery 1.8+
  - A recent/decent web browser (Firefox, Chrome or Opera suggested; IE8+ works too)
  - A valid HTML 5 DOCTYPE (strongly recommended)
 
-###Licensing
+### Licensing
 
 This software is released under the MIT license.
 
-Copyright © 2014 biohzrdmx
+Copyright © 2017 biohzrdmx
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -69,14 +69,14 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-###Contributing
+### Contributing
 
 Fork the repo, add an interesting feature or fix a bug and send a pull request.
 
-###Troubleshooting
+### Troubleshooting
 
 The calendar works on almost every browser BUT it will visually break on IE7 and older (due to buggy CSS support). This is not a concern and will not be fixed.
 
-##Credits
+## Credits
 
 <strong>Lead coder:</strong> biohzrdmx (github.com/biohzrdmx)
