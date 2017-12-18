@@ -612,7 +612,7 @@
 			locked = locked ? locked.split(';') : false;
 			var callback = function(date) {
 				var ret = true,
-					selected = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+					selected = $.datePicker.utils.pad(date.getDate(), 2) + '/' + $.datePicker.utils.pad(date.getMonth() + 1, 2) + '/' + date.getFullYear();
 				if (locked.length) {
 					for (var i = 0; i < locked.length; i++) {
 						if (locked[i] == selected) {
