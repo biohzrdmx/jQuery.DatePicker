@@ -232,7 +232,7 @@
 			datePicker.append(decades);
 			$.datePicker.hide(true);
 			// Position
-			if (opts.element) {
+			if (opts.element && ! opts.appendTo) {
 				var offset = opts.element.offset();
 				//
 				datePicker.css({
@@ -242,7 +242,7 @@
 			}
 			// Add to DOM
 			datePicker.hide();
-			$('body').append(datePicker);
+			$(opts.appendTo || 'body').append(datePicker);
 			datePicker.fadeIn(150);
 			// Calendar events
 			datePicker.on('click', '.calendar .day', function(e) {
