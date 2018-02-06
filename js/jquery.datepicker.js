@@ -32,7 +32,8 @@
 				return true;
 			},
 			limitCenturies: true,
-			closeOnPick: true
+			closeOnPick: true,
+			appendTo: null
 		},
 		utils: {
 			firstDay: function(year, month) {
