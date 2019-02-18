@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<title>jQuery.DatePicker 2</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai-sublime.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700">
+	<link rel="stylesheet" href="jquery.datepicker2.css">
+	<style>
+		body {
+			background: #333333;
+			color: #FFFFFF;
+			display: flex;
+			min-height: 100vh;
+			flex-direction: column;
+			font-family: 'Roboto', sans-serif;
+		}
+		header {
+			background: #282828;
+			color: #FFFFFF;
+		}
+		header .logo {
+			font-size: 2rem;
+			font-weight: 300;
+			margin: 0;
+		}
+		footer {
+			background: #282828;
+			color: #FFFFFF;
+		}
+		section {
+			flex: 1 0 0;
+		}
+		h1, h2, h3, h4, h5, h6 {
+			font-weight: 300;
+		}
+		.tagline {
+			font-size: 1.25rem;
+			font-weight: 300;
+			font-style: italic;
+			margin-bottom: 5px;
+		}
+		.demo-wrapper {
+			background: #23241F;
+			border-radius: 3px;
+			padding: 10px;
+			margin-bottom: 15px;
+		}
+		.demo-wrapper > *:last-child {
+			margin-bottom: 0;
+		}
+		a {
+			color: #26C6DA;
+		}
+		a:hover {
+			color: #00ACC1;
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="container p-3">
+			<h1 class="logo">jQuery.DatePicker 2</h1>
+		</div>
+	</header>
+	<section>
+		<div class="container p-3">
+			<p class="tagline">An awesome, lightweight and customizable calendar! (Now with more awesomeness!)</p>
+			<p>This new version brings an updated API, more customization and a better user experience.</p>
+			<p><a href="https://github.com/biohzrdmx/jQuery.DatePicker" class="btn btn-info"><i class="fa fa-github"></i> View on GitHub</a></p>
+			<h2 id="live-demo">Live demo</h2>
+			<div class="demo-wrapper">
+				<h4>Popup calendars</h4>
+				<div class="row row-md">
+					<div class="col">
+						<div class="form-group">
+							<input type="text" name="" id="" class="form-control" data-restrict="past" placeholder="Click to select a date from the past">
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<input type="text" name="" id="" class="form-control" data-restrict="future" placeholder="Click to select a date from the future">
+						</div>
+					</div>
+				</div>
+				<div class="row row-md">
+					<div class="col">
+						<h4>Inline calendar <small>(normal)</small></h4>
+						<div class="form-group">
+							<div class="inline-host-1"></div>
+						</div>
+					</div>
+					<div class="col">
+						<h4>Inline calendar <small>(customized)</small></h4>
+						<div class="form-group">
+							<div class="inline-host-2"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--  -->
+<h1 id="jquery-datepicker">jQuery DatePicker</h1>
+<p>An awesome, lightweight and customizable calendar! (Now with more awesomeness!)</p>
+<p>This new version brings an updated API, more customization and a better user experience.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>jQuery 1.8+</li>
+<li>A recent/decent web browser (Firefox, Chrome or Opera suggested)</li>
+<li>A valid HTML 5 DOCTYPE (strongly recommended)</li>
+</ul>
+<h2 id="installing">Installing</h2>
+<p>Download the required CSS and JS files, add them to your HTML file and you&#39;re done.</p>
+<pre><code class="language-html">  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/jquery.datepicker2.css&quot;&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.datepicker2.js&quot;&gt;&lt;/script&gt;</code></pre>
+<h2 id="basic-usage">Basic usage</h2>
+<h3 id="automatic-mode">Automatic mode</h3>
+<p>Create an input, and add the <code>data-select=&quot;datepicker&quot;</code> data attribute.</p>
+<pre><code class="language-html">  &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;date&quot; id=&quot;date&quot; data-select=&quot;datepicker&quot;&gt;</code></pre>
+<h2 id="advanced-usage">Advanced usage</h2>
+<h3 id="options">Options</h3>
+<p>In this version there are a handful of customization options, available through the <code>$.datePicker.defaults</code> option; you may pass an options object if you call the API directly or by overriding the defaults object.</p>
+<p>The options are:</p>
+<ul>
+<li><code>container</code> - Selector for the element that will contain the generated markup, defaults to <code>body</code></li>
+<li><code>mode</code> - The display mode of the widget, can be either <code>popup</code> or <code>inline</code>, defaults to <code>popup</code>.</li>
+<li><code>select</code> - Selection mode, either <code>single</code> or <code>multiple</code>, defaults to <code>single</code></li>
+<li><code>theme</code> - Visual theme, can be either <code>theme-light</code> or <code>theme-dark</code>, defaults to <code>theme-light</code></li>
+<li><code>show</code> - Which view to show by default, can be <code>decade</code>, <code>year</code> or <code>month</code>, defaults to <code>month</code></li>
+<li><code>doubleSize</code> - Whether to enable double-size mode or not, defaults to <code>false</code></li>
+<li><code>restrictDates</code> - Quick date-restriction mode specifier, can be <code>past</code>, <code>future</code> or <code>custom</code>, defaults to <code>false</code>. More on this below</li>
+<li><code>disableAnimations</code> - Whether to disable animations or not, defaults to <code>false</code></li>
+<li><code>strings</code> - An object with two dictionaries: <code>months</code> and <code>days</code>, used to localize your calendar</li>
+<li><code>view</code> - Contains three objects with several options each, more details below</li>
+<li><code>templates</code> - This contains the templates for the widget and some elements,</li>
+<li><code>callbacks</code> - The callbacks object, more on this below</li>
+<li><code>animate</code> - The animation object, currently is not advised to modify this</li>
+<li><code>dateFormat</code> - Function to format dates, more info below</li>
+<li><code>dateParse</code> - Function to parse dates, more info below</li>
+</ul>
+<h3 id="restrict-date-selection">Restrict date selection</h3>
+<p>By default, the calendar will let you select any valid date for the current month, but you may change this behaviour easily by using the <code>restrictDates</code> option, which can take one of the following values:</p>
+<ul>
+<li><code>past</code> - Only allow past dates</li>
+<li><code>future</code> - Only allow future dates</li>
+<li><code>custom</code> - Use a callback to check if the date should be allowed or not</li>
+</ul>
+<p>The <code>custom</code> value will trigger the following callback from the <code>callbacks</code> object:</p>
+<pre><code class="language-javascript">  onCheckCell: function(cell, date, type) {
+    return true;
+  }</code></pre>
+<p>That way you may restrict specific dates, weekdays, weekends, etc. Just return either <code>true</code> or <code>false</code> for each cell on the current month.</p>
+<p><em>Just a quick heads up: as this callback will be fired for each day of the currently visible month, is not advised to do any lenghty process and/or web requests as you may block the UI and/or generate an empty state. It is best to get your data beforehand (into a JSON object for example) and load it to the calendar using the appropiate callback methods.</em></p>
+<h3 id="customizing-the-views">Customizing the views</h3>
+<p>The <code>defaults</code> object contains a <code>views</code> object which in turn contains three option objects (<code>decade</code>, <code>year</code>, <code>month</code>), one for each calendar view.</p>
+<p>All the three contain a <code>show</code> item, which determines which date will be shown on the view. This can be a parseable date or a <code>Date</code> object.</p>
+<p>The <code>month</code> object also contains the following options:</p>
+<ul>
+<li><code>selected</code> - An array with the selected date(s), depending on the selection mode</li>
+<li><code>disabled</code> - An array with disabled (grayed) dates, these are not selectable</li>
+<li><code>forbidden</code> - An array with disabled (red) dates, these are not selectable</li>
+<li><code>enabled</code> - An array with enabled (not grayed) dates, these are the only selectable</li>
+<li><code>marked</code> - An array with marked (yellow) dates, these are selectable</li>
+<li><code>firstDayOfWeek</code> - Which day of the week to use as the start of the week (0: Sunday to 6: Saturday)</li>
+</ul>
+<p>The arrays can contain either parseable dates or <code>Date</code> objects.</p>
+<p>If you specify <code>disabled</code> dates, these dates will be disabled on the calendar; on the other hand, if you specify <code>enabled</code> dates, only those dates will be enabled on the entire calendar.</p>
+<p>If you&#39;d like a simpler approach, check the <code>restrictDates</code> option as it may be a better fit to your requirements.</p>
+<h3 id="callbacks">Callbacks</h3>
+<p>The <code>callbacks</code> object provides a powerful way to interact with the control.</p>
+<p>You can control the appearance, behaviour and funcionality if you know where to hook into.</p>
+<p>The available callbacks are:</p>
+<ul>
+<li><code>onCreate: function(calendar)</code> - Called when the widget is created</li>
+<li><code>onShow: function(calendar)</code> - Called when the widget is shown</li>
+<li><code>onViewDecade: function(calendar, date)</code> - Called when showing the Decade view. It must return <code>true</code> or <code>false</code> to show or not the view</li>
+<li><code>onViewYear: function(calendar, date)</code> - Called when showing the Year view. It must return <code>true</code> or <code>false</code> to show or not the view</li>
+<li><code>onViewMonth: function(calendar, date)</code> - Called when showing the Month view. It must return <code>true</code> or <code>false</code> to show or not the view</li>
+<li><code>onChangeDecade: function(calendar, date, direction)</code> - Called when changing the Decade. It must return <code>true</code> or <code>false</code> to allow or deny the change</li>
+<li><code>onChangeYear: function(calendar, date, direction)</code> - Called when changing the Year. It must return <code>true</code> or <code>false</code> to allow or deny the change</li>
+<li><code>onChangeMonth: function(calendar, date, direction)</code> - Called when changing the Month. It must return <code>true</code> or <code>false</code> to allow or deny the change</li>
+<li><code>onChangeDay: function(calendar, date, direction)</code> - Called when changing the Day. It must return <code>true</code> or <code>false</code> to allow or deny the change</li>
+<li><code>onCheckCell: function(cell, date, type)</code> - When using the <code>custom</code> value on the <code>restrictDates</code> option this will be called for each day of the currently visible month to enable or disable the cell. Return <code>true</code> or <code>false</code> to do so, defaults to <code>false</code></li>
+<li><code>onRenderCell: function(cell, date, type)</code> - Called when a cell is rendered</li>
+<li><code>onHide: function(calendar)</code> - Called when the widget is hidden</li>
+</ul>
+<h3 id="custom-date-formats">Custom date formats</h3>
+<p>You can specify your own date formats if you want; to do so, you will have to override two functions, the one that formats the selected date and the one that parses the input value into a <code>Date</code> object.</p>
+<p>The default implementation uses the <code>mm-dd-yyyy</code> format, with the following functions:</p>
+<pre><code class="language-javascript">  dateFormat: function(date) {
+    return (date.getMonth() + 1) + &#39;-&#39; + date.getDate() + &#39;-&#39; + date.getFullYear();
+  },
+  dateParse: function(string) {
+    var date = new Date();
+    var parts = string.match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
+    if ( parts &amp;&amp; parts.length == 4 ) {
+      date = new Date( parts[3], parts[1] - 1, parts[2] );
+    }
+    return date;
+  }</code></pre>
+<p>As you can see, it&#39;s pretty straightforward to override them, but it&#39;s strongly recommended to use a date manipulation library such as moment.js to avoid localization/crossbrowser issues.</p>
+<p>Just make sure to return a valid formatted date in <code>dateFormat</code> and a valid <code>Date</code> object in <code>dateParse</code></p>
+<h3 id="more-customization">More customization</h3>
+<p>You may change the <code>strings</code> object to localize your calendar, for example:</p>
+<pre><code class="language-javascript">  $.extend(true, $.datePicker.defaults.strings, {
+    months: [&#39;Enero&#39;, &#39;Febrero&#39;, &#39;Marzo&#39;, &#39;Abril&#39;, &#39;Mayo&#39;, &#39;Junio&#39;, &#39;Julio&#39;, &#39;Agosto&#39;, &#39;Septiembre&#39;, &#39;Octubre&#39;, &#39;Noviembre&#39;, &#39;Diciembre&#39;],
+    days: [&#39;Domingo&#39;, &#39;Lunes&#39;, &#39;Martes&#39;, &#39;Miércoles&#39;, &#39;Jueves&#39;, &#39;Viernes&#39;, &#39;Sábado&#39;]
+  });</code></pre>
+<p>Will render the calendar using spanish month and day names.</p>
+<p>You may also mess with the templates or event the animation functions, but for now is not advised to do so as they are not documented and/or even finished yet.</p>
+<h3 id="licensing">Licensing</h3>
+<p>This software is released under the MIT license.</p>
+<p>Copyright &copy; 2019 biohzrdmx</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<h3 id="contributing">Contributing</h3>
+<p>Fork the repo, add an interesting feature or fix a bug and send a pull request.</p>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>The calendar works on almost every modern browser but MAY NOT WORK on IE/Edge. This is not a concern and will not be fixed.</p>
+<h2 id="credits">Credits</h2>
+<p><strong>Lead coder:</strong> biohzrdmx (github.com/biohzrdmx)</p>
+
+			<!--  -->
+		</div>
+	</section>
+	<footer>
+		<div class="container p-3 text-center">
+			<small>&copy; 2019 biohzrdmx. All rights reserved.</small>
+		</div>
+	</footer>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.ui.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+	<script type="text/javascript" src="jquery.datepicker2.min.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			//
+			var today = new Date(),
+				marked = [];
+			for (var i = 1; i <= 15; i++) {
+				marked.push( (today.getMonth() + 1) + '-' + i + '-' + today.getFullYear() );
+			}
+			//
+			$.datePicker.api.createWidget({
+				mode: 'inline',
+				container: '.inline-host-1',
+			});
+			//
+			$.datePicker.api.createWidget({
+				mode: 'inline',
+				container: '.inline-host-2',
+				restrictDates: 'custom',
+				views: {
+					month: {
+						marked: marked,
+						firstDayOfWeek: 1
+					}
+				},
+				callbacks: {
+					onCheckCell: function(cell, date, type) {
+						var ret = true;
+						if (type == 'day') {
+							ret = date.getDay() > 0 && date.getDay() < 6;
+						}
+						return ret;
+					}
+				}
+			});
+			//
+			$('input[type=text]').each(function() {
+				var input = $(this),
+					restrict = input.data('restrict');
+				input.attr('autocomplete', 'off');
+				input.on('click', function() {
+					var val = input.val();
+					var widget = $.datePicker.api.show({
+						restrictDates: restrict,
+						views: {
+							month: {
+								show: val,
+								selected: [val]
+							}
+						},
+						element: input
+					});
+					input.data('widget', widget);
+				});
+			});
+			//
+			hljs.initHighlightingOnLoad();
+		});
+	</script>
+</body>
+</html>
