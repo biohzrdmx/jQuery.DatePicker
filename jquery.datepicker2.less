@@ -1,0 +1,432 @@
+.jquery-datepicker {
+
+	position: relative;
+	outline: none;
+	display: none;
+	box-sizing: border-box;
+	width: 240px;
+	height: 240px;
+	padding: 5px;
+	font-size: 16px;
+	font-family: sans-serif;
+
+	.datepicker-box {
+
+		display: none;
+		flex-direction: column;
+		height: 100%;
+
+		.box-row {
+
+			display: flex;
+			flex: 1;
+
+			&.row-header {
+
+				flex: none;
+				position: relative;
+				padding-bottom: 5px;
+				padding-right: 60px;
+				margin-bottom: 5px;
+
+				.header-title {
+
+					display: flex;
+					justify-content: center;
+					flex-direction: column;
+					text-align: left;
+					padding: 5px 7px;
+					cursor: pointer;
+					width: 100%;
+				}
+
+				.header-actions {
+
+					position: absolute;
+					top: 3px;
+					right: 3px;
+					bottom: 3px;
+
+					.header-action {
+
+						display: flex;
+						position: relative;
+						justify-content: center;
+						flex-direction: column;
+						text-align: center;
+						float: left;
+						height: 100%;
+						width: 25px;
+						cursor: pointer;
+
+						&:not(:last-child) {
+
+							margin-right: 3px;
+						}
+
+						&::after {
+
+							content: '';
+							position: absolute;
+							width: 0;
+							height: 0;
+							border-style: solid;
+							top: 50%;
+							left: 50%;
+							margin-left: -3px;
+							margin-top: -6px;
+						}
+
+						&.action-down::after {
+
+							border-width: 5px 6px 5px 0;
+							border-color: transparent red transparent transparent;
+						}
+
+						&.action-up::after {
+
+							border-width: 5px 0 5px 6px;
+							border-color: transparent transparent transparent red;
+						}
+					}
+				}
+			}
+
+			&.row-days {
+
+				font-size: 12px;
+				text-align: center;
+				text-transform: uppercase;
+			}
+
+			&.row-week {
+
+				font-size: 14px;
+				text-align: right;
+			}
+
+			.box-cell {
+
+				display: flex;
+				flex: 1 1 0;
+				justify-content: center;
+				flex-direction: column;
+				text-align: center;
+				padding: 5px;
+				cursor: default;
+			}
+		}
+
+		&.is-active {
+
+			display: flex;
+		}
+	}
+
+	&.is-2x {
+
+		width: 480px;
+		height: 480px;
+		font-size: 21px;
+
+		.datepicker-box {
+
+			.box-row {
+
+				&.row-days {
+
+					font-size: 16px;
+				}
+
+				&.row-week {
+
+					font-size: 18px;
+				}
+			}
+		}
+	}
+
+	&.is-open {
+
+		display: block;
+	}
+
+	&.is-popup {
+
+		position: absolute;
+		top: 50px;
+		left: 50px;
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+
+		&::before,
+		&::after {
+
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 0;
+			border-style: solid;
+		}
+
+		&.tip-below::before,
+		&.tip-below::after {
+
+			bottom: -10px;
+			border-width: 10px 10px 0 10px;
+			border-color: red transparent transparent transparent;
+		}
+
+		&.tip-below::before { bottom: -11px; }
+
+		&.tip-above::before,
+		&.tip-above::after {
+
+			top: -10px;
+			border-width: 0 10px 10px 10px;
+			border-color: transparent transparent red transparent;
+		}
+
+		&.tip-above::before { top: -11px; }
+
+		&.tip-right::before, &.tip-right::after { right: 20px; }
+		&.tip-left::before, &.tip-left::after   { left: 20px;  }
+	}
+
+	&.theme-light {
+
+		@color_background: #FFFFFF;
+		@color_border: #CCCCCC;
+		@color_text: #222222;
+		@color_highlight_1: #EEEEEE;
+		@color_highlight_2: #12AFCB;
+		@color_highlight_3: #FFD54F;
+		@color_highlight_4: #E57373;
+
+		border: 1px solid @color_border;
+		background: @color_background;
+		color: @color_text;
+
+		.datepicker-box {
+
+			background: @color_background;
+
+			.box-row {
+
+				&.row-header {
+
+					color: lighten(@color_text, 25%);
+					border-bottom: 1px solid fade(@color_border, 50%);
+
+					.header-title {
+
+						&:hover {
+
+							color: @color_text;
+						}
+					}
+
+					.header-actions {
+
+						.header-action {
+
+							&.action-down::after { border-color: transparent @color_border transparent transparent; }
+							&.action-up::after { border-color: transparent transparent transparent @color_border; }
+							&.action-down:hover::after { border-color: transparent @color_text transparent transparent; }
+							&.action-up:hover::after { border-color: transparent transparent transparent @color_text; }
+						}
+					}
+				}
+
+				&.row-days {
+
+					color: lighten(@color_text, 35%);
+				}
+
+				&.row-week {
+
+					.box-cell {
+
+						&:hover {
+
+							background: @color_highlight_1;
+							color: @color_text;
+						}
+
+						&.cell-grayed {
+
+							background: transparent;
+							color: @color_border;
+						}
+
+						&.cell-today {
+
+							background: @color_background;
+							color: @color_highlight_2;
+
+							&:hover {
+
+								background: @color_highlight_1;
+								color: @color_text;
+							}
+						}
+
+						&.cell-marked {
+
+							background: fade(@color_highlight_3, 20%);
+							color: darken(@color_highlight_3, 25%);
+
+							&:hover {
+
+								background: @color_highlight_1;
+								color: @color_text;
+							}
+						}
+
+						&.cell-forbidden {
+
+							background: fade(@color_highlight_4, 20%);
+							color: darken(@color_highlight_4, 25%);
+						}
+
+						&.cell-selected {
+
+							background: @color_highlight_2;
+							color: @color_background;
+
+							&:hover {
+
+								background: @color_highlight_2;
+								color: @color_background;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&.tip-below::before { border-color: @color_border transparent transparent transparent; }
+		&.tip-above::before { border-color: transparent transparent @color_border transparent; }
+
+		&.tip-below::after { border-color: @color_background transparent transparent transparent; }
+		&.tip-above::after { border-color: transparent transparent @color_background transparent; }
+	}
+
+	&.theme-dark {
+
+		@color_background: #1B1B1B;
+		@color_border: #323232;
+		@color_text: #FFFFFF;
+		@color_highlight_1: #323232;
+		@color_highlight_2: #12AFCB;
+		@color_highlight_3: #FFD54F;
+		@color_highlight_4: #E57373;
+
+		border: 1px solid @color_border;
+		background: @color_background;
+		color: @color_text;
+
+		.datepicker-box {
+
+			background: @color_background;
+
+			.box-row {
+
+				&.row-header {
+
+					color: fade(@color_text, 50%);
+					border-bottom: 1px solid fade(@color_border, 75%);
+
+					.header-title {
+
+						&:hover {
+
+							color: @color_text;
+						}
+					}
+
+					.header-actions {
+
+						.header-action {
+
+							&.action-down::after { border-color: transparent @color_border transparent transparent; }
+							&.action-up::after { border-color: transparent transparent transparent @color_border; }
+							&.action-down:hover::after { border-color: transparent @color_text transparent transparent; }
+							&.action-up:hover::after { border-color: transparent transparent transparent @color_text; }
+						}
+					}
+				}
+
+				&.row-days {
+
+					color: fade(@color_text, 35%);
+				}
+
+				&.row-week {
+
+					.box-cell {
+
+						&:hover {
+
+							background: @color_highlight_1;
+							color: @color_text;
+						}
+
+						&.cell-grayed {
+
+							background: transparent;
+							color: @color_border;
+						}
+
+						&.cell-today {
+
+							background: @color_background;
+							color: @color_highlight_2;
+
+							&:hover {
+
+								background: @color_highlight_1;
+								color: @color_text;
+							}
+						}
+
+						&.cell-marked {
+
+							background: fade(@color_highlight_3, 5%);
+							color: darken(@color_highlight_3, 25%);
+
+							&:hover {
+
+								background: @color_highlight_1;
+								color: @color_text;
+							}
+						}
+
+						&.cell-forbidden {
+
+							background: fade(@color_highlight_4, 5%);
+							color: darken(@color_highlight_4, 25%);
+						}
+
+						&.cell-selected {
+
+							background: @color_highlight_2;
+							color: @color_text;
+
+							&:hover {
+
+								background: @color_highlight_2;
+								color: @color_text;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&.tip-below::before { border-color: @color_border transparent transparent transparent; }
+		&.tip-above::before { border-color: transparent transparent @color_border transparent; }
+
+		&.tip-below::after { border-color: @color_background transparent transparent transparent; }
+		&.tip-above::after { border-color: transparent transparent @color_background transparent; }
+	}
+}

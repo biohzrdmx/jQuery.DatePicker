@@ -1,0 +1,306 @@
+.jquery-datepicker {
+  position: relative;
+  outline: none;
+  display: none;
+  box-sizing: border-box;
+  width: 240px;
+  height: 240px;
+  padding: 5px;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+.jquery-datepicker .datepicker-box {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+}
+.jquery-datepicker .datepicker-box .box-row {
+  display: flex;
+  flex: 1;
+}
+.jquery-datepicker .datepicker-box .box-row.row-header {
+  flex: none;
+  position: relative;
+  padding-bottom: 5px;
+  padding-right: 60px;
+  margin-bottom: 5px;
+}
+.jquery-datepicker .datepicker-box .box-row.row-header .header-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  padding: 5px 7px;
+  cursor: pointer;
+  width: 100%;
+}
+.jquery-datepicker .datepicker-box .box-row.row-header .header-actions {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
+}
+.jquery-datepicker .datepicker-box .box-row.row-header .header-actions .header-action {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  float: left;
+  height: 100%;
+  width: 25px;
+  cursor: pointer;
+}
+.jquery-datepicker .datepicker-box .box-row.row-header .header-actions .header-action:not(:last-child) {
+  margin-right: 3px;
+}
+.jquery-datepicker .datepicker-box .box-row.row-header .header-actions .header-action::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  top: 50%;
+  left: 50%;
+  margin-left: -3px;
+  margin-top: -6px;
+}
+.jquery-datepicker .datepicker-box .box-row.row-header .header-actions .header-action.action-down::after {
+  border-width: 5px 6px 5px 0;
+  border-color: transparent red transparent transparent;
+}
+.jquery-datepicker .datepicker-box .box-row.row-header .header-actions .header-action.action-up::after {
+  border-width: 5px 0 5px 6px;
+  border-color: transparent transparent transparent red;
+}
+.jquery-datepicker .datepicker-box .box-row.row-days {
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.jquery-datepicker .datepicker-box .box-row.row-week {
+  font-size: 14px;
+  text-align: right;
+}
+.jquery-datepicker .datepicker-box .box-row .box-cell {
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 5px;
+  cursor: default;
+}
+.jquery-datepicker .datepicker-box.is-active {
+  display: flex;
+}
+.jquery-datepicker.is-2x {
+  width: 480px;
+  height: 480px;
+  font-size: 21px;
+}
+.jquery-datepicker.is-2x .datepicker-box .box-row.row-days {
+  font-size: 16px;
+}
+.jquery-datepicker.is-2x .datepicker-box .box-row.row-week {
+  font-size: 18px;
+}
+.jquery-datepicker.is-open {
+  display: block;
+}
+.jquery-datepicker.is-popup {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+.jquery-datepicker.is-popup::before,
+.jquery-datepicker.is-popup::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+.jquery-datepicker.is-popup.tip-below::before,
+.jquery-datepicker.is-popup.tip-below::after {
+  bottom: -10px;
+  border-width: 10px 10px 0 10px;
+  border-color: red transparent transparent transparent;
+}
+.jquery-datepicker.is-popup.tip-below::before {
+  bottom: -11px;
+}
+.jquery-datepicker.is-popup.tip-above::before,
+.jquery-datepicker.is-popup.tip-above::after {
+  top: -10px;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent red transparent;
+}
+.jquery-datepicker.is-popup.tip-above::before {
+  top: -11px;
+}
+.jquery-datepicker.is-popup.tip-right::before,
+.jquery-datepicker.is-popup.tip-right::after {
+  right: 20px;
+}
+.jquery-datepicker.is-popup.tip-left::before,
+.jquery-datepicker.is-popup.tip-left::after {
+  left: 20px;
+}
+.jquery-datepicker.theme-light {
+  border: 1px solid #CCCCCC;
+  background: #FFFFFF;
+  color: #222222;
+}
+.jquery-datepicker.theme-light .datepicker-box {
+  background: #FFFFFF;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-header {
+  color: #626262;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-header .header-title:hover {
+  color: #222222;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-header .header-actions .header-action.action-down::after {
+  border-color: transparent #CCCCCC transparent transparent;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-header .header-actions .header-action.action-up::after {
+  border-color: transparent transparent transparent #CCCCCC;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-header .header-actions .header-action.action-down:hover::after {
+  border-color: transparent #222222 transparent transparent;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-header .header-actions .header-action.action-up:hover::after {
+  border-color: transparent transparent transparent #222222;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-days {
+  color: #7b7b7b;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-week .box-cell:hover {
+  background: #EEEEEE;
+  color: #222222;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-week .box-cell.cell-grayed {
+  background: transparent;
+  color: #CCCCCC;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-week .box-cell.cell-today {
+  background: #FFFFFF;
+  color: #12AFCB;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-week .box-cell.cell-today:hover {
+  background: #EEEEEE;
+  color: #222222;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-week .box-cell.cell-marked {
+  background: rgba(255, 213, 79, 0.2);
+  color: #cf9d00;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-week .box-cell.cell-marked:hover {
+  background: #EEEEEE;
+  color: #222222;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-week .box-cell.cell-forbidden {
+  background: rgba(229, 115, 115, 0.2);
+  color: #b72222;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-week .box-cell.cell-selected {
+  background: #12AFCB;
+  color: #FFFFFF;
+}
+.jquery-datepicker.theme-light .datepicker-box .box-row.row-week .box-cell.cell-selected:hover {
+  background: #12AFCB;
+  color: #FFFFFF;
+}
+.jquery-datepicker.theme-light.tip-below::before {
+  border-color: #CCCCCC transparent transparent transparent;
+}
+.jquery-datepicker.theme-light.tip-above::before {
+  border-color: transparent transparent #CCCCCC transparent;
+}
+.jquery-datepicker.theme-light.tip-below::after {
+  border-color: #FFFFFF transparent transparent transparent;
+}
+.jquery-datepicker.theme-light.tip-above::after {
+  border-color: transparent transparent #FFFFFF transparent;
+}
+.jquery-datepicker.theme-dark {
+  border: 1px solid #323232;
+  background: #1B1B1B;
+  color: #FFFFFF;
+}
+.jquery-datepicker.theme-dark .datepicker-box {
+  background: #1B1B1B;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-header {
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(50, 50, 50, 0.75);
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-header .header-title:hover {
+  color: #FFFFFF;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-header .header-actions .header-action.action-down::after {
+  border-color: transparent #323232 transparent transparent;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-header .header-actions .header-action.action-up::after {
+  border-color: transparent transparent transparent #323232;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-header .header-actions .header-action.action-down:hover::after {
+  border-color: transparent #FFFFFF transparent transparent;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-header .header-actions .header-action.action-up:hover::after {
+  border-color: transparent transparent transparent #FFFFFF;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-days {
+  color: rgba(255, 255, 255, 0.35);
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-week .box-cell:hover {
+  background: #323232;
+  color: #FFFFFF;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-week .box-cell.cell-grayed {
+  background: transparent;
+  color: #323232;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-week .box-cell.cell-today {
+  background: #1B1B1B;
+  color: #12AFCB;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-week .box-cell.cell-today:hover {
+  background: #323232;
+  color: #FFFFFF;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-week .box-cell.cell-marked {
+  background: rgba(255, 213, 79, 0.05);
+  color: #cf9d00;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-week .box-cell.cell-marked:hover {
+  background: #323232;
+  color: #FFFFFF;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-week .box-cell.cell-forbidden {
+  background: rgba(229, 115, 115, 0.05);
+  color: #b72222;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-week .box-cell.cell-selected {
+  background: #12AFCB;
+  color: #FFFFFF;
+}
+.jquery-datepicker.theme-dark .datepicker-box .box-row.row-week .box-cell.cell-selected:hover {
+  background: #12AFCB;
+  color: #FFFFFF;
+}
+.jquery-datepicker.theme-dark.tip-below::before {
+  border-color: #323232 transparent transparent transparent;
+}
+.jquery-datepicker.theme-dark.tip-above::before {
+  border-color: transparent transparent #323232 transparent;
+}
+.jquery-datepicker.theme-dark.tip-below::after {
+  border-color: #1B1B1B transparent transparent transparent;
+}
+.jquery-datepicker.theme-dark.tip-above::after {
+  border-color: transparent transparent #1B1B1B transparent;
+}
