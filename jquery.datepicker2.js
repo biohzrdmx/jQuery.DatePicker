@@ -266,15 +266,22 @@
 				return (date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear();
 			},
 			dateParse: function(string) {
-				var date = new Date();
-				var parts = string.match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
-				if ( parts && parts.length == 4 ) {
-					date = new Date( parts[3], parts[1] - 1, parts[2] );
-				}
-				return date;
+				return $.datePicker.api.date(string);
 			}
 		},
 		api: {
+			date: function(string) {
+				var date = null;
+				if (string instanceof Date) {
+					date = new Date(string);
+				} else {
+					var parts = string.match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
+					if ( parts && parts.length == 4 ) {
+						date = new Date( parts[3], parts[1] - 1, parts[2] );
+					}
+				}
+				return date;
+			},
 			show: function(options) {
 				var other = $('.jquery-datepicker.is-popup'),
 					widget = $.datePicker.api.createWidget(options);
@@ -405,12 +412,12 @@
 						date = cell.data('date');
 					e.preventDefault();
 					if ( !cell.hasClass('cell-grayed') ) {
-						if ( opts.callbacks.onChangeYear( widget, new Date(date), false ) ) {
+						if ( opts.callbacks.onChangeYear( widget, $.datePicker.api.date(date), false ) ) {
 							widget.views.year.empty();
-							opts.views.year.show = new Date(date);
+							opts.views.year.show = $.datePicker.api.date(date);
 							$.datePicker.api.createYearView(opts, widget.views.year);
 						}
-						if ( opts.callbacks.onViewYear( widget, new Date(date) ) ) {
+						if ( opts.callbacks.onViewYear( widget, $.datePicker.api.date(date) ) ) {
 							opts.animate(widget.views.decade, 'fadeOut', function() {
 								widget.views.decade.removeClass('is-active');
 								widget.views.year.addClass('is-active');
@@ -467,12 +474,12 @@
 						date = cell.data('date');
 					e.preventDefault();
 					if ( !cell.hasClass('cell-grayed') ) {
-						if ( opts.callbacks.onChangeMonth( widget, new Date(date), false ) ) {
+						if ( opts.callbacks.onChangeMonth( widget, $.datePicker.api.date(date), false ) ) {
 							widget.views.month.empty();
-							opts.views.month.show = new Date(date);
+							opts.views.month.show = $.datePicker.api.date(date);
 							$.datePicker.api.createMonthView(opts, widget.views.month);
 						}
-						if ( opts.callbacks.onViewMonth( widget, new Date(date) ) ) {
+						if ( opts.callbacks.onViewMonth( widget, $.datePicker.api.date(date) ) ) {
 							opts.animate(widget.views.year, 'fadeOut', function() {
 								widget.views.year.removeClass('is-active');
 								widget.views.month.addClass('is-active');
@@ -539,7 +546,7 @@
 						date = cell.data('date');
 					e.preventDefault();
 					if ( !cell.hasClass('cell-grayed') && !cell.hasClass('cell-forbidden') ) {
-						if ( opts.callbacks.onChangeDay( widget, new Date(date) ) ) {
+						if ( opts.callbacks.onChangeDay( widget, $.datePicker.api.date(date) ) ) {
 							// For single selection mode, deselect everything first
 							if (opts.select == 'single') {
 								opts.views.month.selected = [];
@@ -550,7 +557,7 @@
 								}
 							}
 							cell.addClass('cell-selected');
-							opts.views.month.selected.push( new Date(date) );
+							opts.views.month.selected.push( $.datePicker.api.date(date) );
 						}
 					}
 				});
@@ -604,7 +611,7 @@
 					}
 					// Save date
 					var date = '01-01-' + values[i];
-					date = new Date(date);
+					date = $.datePicker.api.date(date);
 					day.data('date', date);
 					// Grayed years
 					var disabled = false;
@@ -667,7 +674,7 @@
 					}
 					// Save date
 					var date = (i + 1) + '-01-' + settings.show.getFullYear();
-					date = new Date(date);
+					date = $.datePicker.api.date(date);
 					day.data('date', date);
 					// Grayed months
 					var disabled = false;
@@ -773,7 +780,7 @@
 					} else {
 						date = (settings.show.getMonth() + 1) + '-' + values[i] + '-' + settings.show.getFullYear();
 					}
-					date = new Date(date);
+					date = $.datePicker.api.date(date);
 					day.data('date', date);
 					// Grayed days
 					var disabled = false;
@@ -781,7 +788,8 @@
 						disabled = true;
 						// Iterate enabled dates
 						for (var n = 0; n < settings.enabled.length; n++) {
-							if (typeof settings.enabled[n] === 'string') settings.enabled[n] = new Date( settings.enabled[n] );
+							if (!settings.enabled[n].length) continue;
+							if (typeof settings.enabled[n] === 'string') settings.enabled[n] = $.datePicker.api.date( settings.enabled[n] );
 							if ( date.toDateString() == settings.enabled[n].toDateString() ) {
 								disabled = false;
 								break;
@@ -812,8 +820,8 @@
 						// Disabled
 						if (settings.disabled.length) {
 							for (var n = 0; n < settings.disabled.length; n++) {
-								if (typeof settings.disabled[n] === 'string') settings.disabled[n] = new Date( settings.disabled[n] );
-								if ( date.toDateString() == settings.disabled[n].toDateString() ) {
+								if (typeof settings.disabled[n] === 'string') settings.disabled[n] = $.datePicker.api.date( settings.disabled[n] );
+								if ( settings.disabled[n] && date.toDateString() == settings.disabled[n].toDateString() ) {
 									day.addClass('cell-grayed');
 									break;
 								}
@@ -822,8 +830,8 @@
 						// Forbidden
 						if (settings.forbidden.length) {
 							for (var n = 0; n < settings.forbidden.length; n++) {
-								if (typeof settings.forbidden[n] === 'string') settings.forbidden[n] = new Date( settings.forbidden[n] );
-								if ( date.toDateString() == settings.forbidden[n].toDateString() ) {
+								if (typeof settings.forbidden[n] === 'string') settings.forbidden[n] = $.datePicker.api.date( settings.forbidden[n] );
+								if ( settings.forbidden[n] && date.toDateString() == settings.forbidden[n].toDateString() ) {
 									day.addClass('cell-forbidden');
 									break;
 								}
@@ -832,18 +840,19 @@
 						// Marked
 						if (settings.marked.length) {
 							for (var n = 0; n < settings.marked.length; n++) {
-								if (typeof settings.marked[n] === 'string') settings.marked[n] = new Date( settings.marked[n] );
-								if ( date.toDateString() == settings.marked[n].toDateString() ) {
+								if (typeof settings.marked[n] === 'string') settings.marked[n] = $.datePicker.api.date( settings.marked[n] );
+								if ( settings.marked[n] && date.toDateString() == settings.marked[n].toDateString() ) {
 									day.addClass('cell-marked');
 									break;
 								}
 							}
 						}
 						// Selected
+						console.log(settings.selected);
 						if (settings.selected.length) {
 							for (var n = 0; n < settings.selected.length; n++) {
-								if (typeof settings.selected[n] === 'string') settings.selected[n] = new Date( settings.selected[n] );
-								if ( date.toDateString() == settings.selected[n].toDateString() ) {
+								if (typeof settings.selected[n] === 'string') settings.selected[n] = $.datePicker.api.date( settings.selected[n] );
+								if ( settings.selected[n] && date.toDateString() == settings.selected[n].toDateString() ) {
 									day.addClass('cell-selected');
 									break;
 								}
@@ -866,7 +875,7 @@
 					views: {
 						month: {
 							show: val,
-							selected: [val]
+							selected: val ? [val] : []
 						}
 					},
 					element: input

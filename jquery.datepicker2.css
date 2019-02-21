@@ -16,6 +16,7 @@
 }
 .jquery-datepicker .datepicker-box .box-row {
   display: flex;
+  min-height: 0;
   flex: 1;
 }
 .jquery-datepicker .datepicker-box .box-row.row-header {
