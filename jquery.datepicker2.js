@@ -848,7 +848,6 @@
 							}
 						}
 						// Selected
-						console.log(settings.selected);
 						if (settings.selected.length) {
 							for (var n = 0; n < settings.selected.length; n++) {
 								if (typeof settings.selected[n] === 'string') settings.selected[n] = $.datePicker.api.date( settings.selected[n] );
