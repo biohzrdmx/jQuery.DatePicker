@@ -724,14 +724,15 @@
 				box.addClass('box-month');
 				// Offset days of week depending on the first day of week
 				settings.firstDayOfWeek = settings.firstDayOfWeek < 0 ? 0 : (settings.firstDayOfWeek > 6 ? 6 : settings.firstDayOfWeek);
+				var dayNames = opts.strings.days.slice();
 				if (settings.firstDayOfWeek > 0) {
-					var plucked = opts.strings.days.splice(0, settings.firstDayOfWeek);
-					opts.strings.days = opts.strings.days.concat(plucked);
+					var plucked = dayNames.splice(0, settings.firstDayOfWeek);
+					dayNames = dayNames.concat(plucked);
 				}
 				var row = $('<div class="box-row row-days"></div>');
 				// Add weekdays row
 				for (var i = 0; i < 7; i++) {
-					row.append('<div class="box-cell cell-day">'+ opts.strings.days[i].substring(0, 2) +'</div>');
+					row.append('<div class="box-cell cell-day">'+ dayNames[i].substring(0, 2) +'</div>');
 				}
 				box.append(row);
 				// Pad month days with extra grayed days
