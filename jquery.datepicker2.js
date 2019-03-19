@@ -871,11 +871,12 @@
 			input.attr('autocomplete', 'off');
 			input.on('click', function() {
 				var val = input.val();
+				var date = val ? $.datePicker.defaults.dateParse(val) : null;
 				var widget = $.datePicker.api.show({
 					views: {
 						month: {
-							show: val,
-							selected: val ? [val] : []
+							show: val ? date : '',
+							selected: val ? [ date ] : []
 						}
 					},
 					element: input
