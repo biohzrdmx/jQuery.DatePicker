@@ -191,13 +191,33 @@
 <p>You can specify your own date formats if you want; to do so, you will have to override two functions, the one that formats the selected date and the one that parses the input value into a <code>Date</code> object.</p>
 <p>The default implementation uses the <code>mm-dd-yyyy</code> format, with the following functions:</p>
 <pre><code class="language-javascript">  dateFormat: function(date) {
-    return (date.getMonth() + 1) + &#39;-&#39; + date.getDate() + &#39;-&#39; + date.getFullYear();
+    return $.datePicker.defaults.pad(date.getMonth() + 1, 2) + '-' + $.datePicker.defaults.pad(date.getDate(), 2) + '-' + date.getFullYear();
   },
   dateParse: function(string) {
     var date = new Date();
-    var parts = string.match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
-    if ( parts &amp;&amp; parts.length == 4 ) {
-      date = new Date( parts[3], parts[1] - 1, parts[2] );
+    if (string instanceof Date) {
+      date = new Date(string);
+    } else {
+      var parts = string.match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
+      if ( parts && parts.length == 4 ) {
+        date = new Date( parts[3], parts[1] - 1, parts[2] );
+      }
+    }
+    return date;
+  }</code></pre>
+<p>For example, to change the format to `dd/mm/YYYY` you will do:</p>
+<pre><code class="language-javascript">  dateFormat: function(date) {
+    return $.datePicker.defaults.pad(date.getDate(), 2) + '/' + $.datePicker.defaults.pad(date.getMonth() + 1, 2) + '/' + date.getFullYear();
+  },
+  dateParse: function(string) {
+    var date = new Date();
+    if (string instanceof Date) {
+      date = new Date(string);
+    } else {
+      var parts = string.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+      if ( parts && parts.length == 4 ) {
+        date = new Date( parts[3], parts[2] - 1, parts[1] );
+      }
     }
     return date;
   }</code></pre>
