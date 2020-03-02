@@ -263,10 +263,15 @@
 				}
 			},
 			dateFormat: function(date) {
-				return (date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear();
+				return this.pad(date.getMonth() + 1, 2) + '-' + this.pad(date.getDate(), 2) + '-' + date.getFullYear();
 			},
 			dateParse: function(string) {
 				return $.datePicker.api.date(string);
+			},
+			pad: function(n, width, z) {
+				z = z || '0';
+				n = n + '';
+				return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 			}
 		},
 		api: {

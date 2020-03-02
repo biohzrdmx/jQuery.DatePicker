@@ -124,13 +124,37 @@ The default implementation uses the `mm-dd-yyyy` format, with the following func
 
 ```javascript
   dateFormat: function(date) {
-    return (date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear();
+    return $.datePicker.defaults.pad(date.getMonth() + 1, 2) + '-' + $.datePicker.defaults.pad(date.getDate(), 2) + '-' + date.getFullYear();
   },
   dateParse: function(string) {
     var date = new Date();
-    var parts = string.match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
-    if ( parts && parts.length == 4 ) {
-      date = new Date( parts[3], parts[1] - 1, parts[2] );
+    if (string instanceof Date) {
+      date = new Date(string);
+    } else {
+      var parts = string.match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
+      if ( parts && parts.length == 4 ) {
+        date = new Date( parts[3], parts[1] - 1, parts[2] );
+      }
+    }
+    return date;
+  }
+```
+
+For example, to change the format to `dd/mm/YYYY` you will do:
+
+```javascript
+  dateFormat: function(date) {
+    return $.datePicker.defaults.pad(date.getDate(), 2) + '/' + $.datePicker.defaults.pad(date.getMonth() + 1, 2) + '/' + date.getFullYear();
+  },
+  dateParse: function(string) {
+    var date = new Date();
+    if (string instanceof Date) {
+      date = new Date(string);
+    } else {
+      var parts = string.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+      if ( parts && parts.length == 4 ) {
+        date = new Date( parts[3], parts[2] - 1, parts[1] );
+      }
     }
     return date;
   }
